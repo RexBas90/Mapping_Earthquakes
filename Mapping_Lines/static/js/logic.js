@@ -11,6 +11,8 @@ let map = L.map('mapid').setView([37.6214, -122.3790], 5);
 let line = [
   [42.5236, -71.1030],
   [42.7284, -73.6918],
+  [55.7635, 12.4949],
+  [42.7284, -73.6918],
   [44.5263, -109.0565],
   [30.4213, -87.2169],
   [42.2793, -71.4162],
@@ -25,6 +27,11 @@ L.polyline(line, {
   weight: 4,
   dashArray: '5,10'
 }).addTo(map);
+
+
+line.forEach(function(place) {
+  L.marker(place).addTo(map)
+});
 
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
