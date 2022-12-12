@@ -111,10 +111,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
   }).addTo(earthquakes);
 
  // Create a legend control object.
-  let legend = L.control({
-    position: "bottomright"
-  });
-    
+  let legend = L.control({position: "bottomright"});
   legend.onAdd = function () {
     let div = L.DomUtil.create('div', 'info legend');
       const magnitudes = [0, 1, 2, 3, 4, 5];
