@@ -142,7 +142,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geoj
     if (magnitude > 5) {
       return "#ea2c2c";
     }
-    if (magnitude < 5) {
+    if (magnitude <= 5) {
       return "#ea822c";
     }
   }
@@ -169,6 +169,9 @@ style: styleInfo,
 // 8. Add the major earthquakes layer to the map.
 }).addTo(majorEarthquakes);
 // 9. Close the braces and parentheses for the major earthquake data.
+
+// Add Major Earthquake layer to map
+majorEarthquakes.addTo(map);
 });
 
 
@@ -204,6 +207,7 @@ legend.onAdd = function() {
   // Finally, we our legend to the map.
   legend.addTo(map);
 
+  // create line style for tectonics layer
   let lineStyle = {
     color: "red",
     weight: 2
@@ -211,11 +215,14 @@ legend.onAdd = function() {
 
   let link = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
 
-  // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
+  // Use d3.json to make a call to get our Tectonic Plate geoJSON data.
   d3.json(link).then(function(data) {
     L.geoJson(data,{
       style: lineStyle
       }
-    ).addTo(map);
+    ).addTo(tectonics);
   });  
   });
+
+  // Add tectonics layer to map
+  tectonics.addTo(map);
